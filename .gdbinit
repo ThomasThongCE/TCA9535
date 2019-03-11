@@ -1,0 +1,1 @@
+set sysroot /opt/orca-eglfs/2.1.3/sysroots/cortexa9hf-neon-orca-linux-gnueabi

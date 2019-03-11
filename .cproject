@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="org.yocto.cmake.managedbuilder.configuration.gnu.exe.debug.940249549">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.yocto.cmake.managedbuilder.configuration.gnu.exe.debug.940249549" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.yocto.sdk.ide.buildArtefact.cmake.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.yocto.sdk.ide.buildArtefact.cmake.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="Builds a version of the project which is ready for debugging" id="org.yocto.cmake.managedbuilder.configuration.gnu.exe.debug.940249549" name="Debug" parent="org.yocto.cmake.managedbuilder.configuration.gnu.exe.debug">
+					<folderInfo id="org.yocto.cmake.managedbuilder.configuration.gnu.exe.debug.940249549." name="/" resourcePath="">
+						<toolChain id="org.yocto.cmake.managedbuilder.toolchain.gnu.exe.debug.1029376669" name="Yocto CMake Build (Toolchain)" superClass="org.yocto.cmake.managedbuilder.toolchain.gnu.exe.debug">
+							<targetPlatform id="org.yocto.cmake.managedbuilder.target.gnu.exe.debug.803104431" isAbstract="false" name="Debug Platform" superClass="org.yocto.cmake.managedbuilder.target.gnu.exe.debug"/>
+							<builder buildPath="${workspace_loc:/TCA9535}/Debug" id="org.yocto.cmake.managedbuilder.builder.gnu.exe.debug.701375073" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Yocto CMake Environment Builder" superClass="org.yocto.cmake.managedbuilder.builder.gnu.exe.debug"/>
+							<tool id="org.yocto.cmake.managedbuilder.cmakeconfigure.gnu.exe.debug.974802113" name="CMake configure" superClass="org.yocto.cmake.managedbuilder.cmakeconfigure.gnu.exe.debug"/>
+							<tool id="org.yocto.cmake.managedbuilder.compiler.gnu.exe.debug.249360342" name="GCC C++ Compiler" superClass="org.yocto.cmake.managedbuilder.compiler.gnu.exe.debug">
+								<option id="gnu.cpp.compiler.option.optimization.level.1997628353" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.debugging.level.89605380" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.include.paths.884370746" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/thomasthong/eclips-neon-workspace/TCA9535/inc"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1372590392" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="org.yocto.cmake.managedbuilder.linker.gnu.exe.debug.1537693782" name="GCC C++ Linker" superClass="org.yocto.cmake.managedbuilder.linker.gnu.exe.debug">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1125186551" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="org.yocto.cmake.managedbuilder.compiler.gnu.exe.c.debug.761668963" name="GCC C Compiler" superClass="org.yocto.cmake.managedbuilder.compiler.gnu.exe.c.debug">
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.1518387443" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.debugging.level.1581600168" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.include.paths.1556842916" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/thomasthong/eclips-neon-workspace/TCA9535/inc"/>
+								</option>
+							</tool>
+							<tool id="org.yocto.cmake.managedbuilder.linker.gnu.exe.c.debug.1507114357" name="GCC C Linker" superClass="org.yocto.cmake.managedbuilder.linker.gnu.exe.c.debug"/>
+						</toolChain>
+					</folderInfo>
+					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="inc"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="TCA9535.org.yocto.sdk.ide.projectTypeCMake.1102827483" name="Yocto Project SDK CMake Project" projectType="org.yocto.sdk.ide.projectTypeCMake"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="org.yocto.cmake.managedbuilder.configuration.gnu.exe.debug.940249549;org.yocto.cmake.managedbuilder.configuration.gnu.exe.debug.940249549.;org.yocto.cmake.managedbuilder.compiler.gnu.exe.debug.249360342;cdt.managedbuild.tool.gnu.cpp.compiler.input.1372590392">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+</cproject>
