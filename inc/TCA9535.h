@@ -11,11 +11,13 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <iostream>
-#include <string>
+#include <cstring>
 #include <fcntl.h>		// For O_RDWR
 #include <unistd.h>		// For open(), create(), close()
 #include <sys/ioctl.h>  // For ioctl()
 #include <linux/i2c-dev.h> 	// For I2C_SLAVE
+
+#include <cerrno>
 
 
 //#define ADDRESS 0x20
@@ -59,10 +61,10 @@ public:
 	bool readBit(Port port, uint8_t bit);					// return value of that bit
 
 	bool writePort(Port port, uint8_t data);					// return whether if success or not
-	bool writeBit(Port port, uint8_t bit, uint8_t value);	// return whether if success or not
+	bool writeBit(Port port, uint8_t bit, bool value);	// return whether if success or not
 
-	uint8_t invertPort(Port port);							// return value of the invert port
-	bool invertBit(Port port, uint8_t bit);					// return value of the invertbit
+	uint8_t invertPort(Port port, uint8_t data);							// return value of the invert port
+	bool invertBit(Port port, uint8_t bit, bool value);					// return value of the invertbit
 };
 
 //helper function

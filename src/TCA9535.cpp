@@ -7,9 +7,10 @@
 
 #include "TCA9535.h"
 
-TCA9535::TCA9535(int addr, string port) : address(addr), port(port)
+TCA9535::TCA9535(int addr, string port) : address(addr)
 {
-	this->port = "/dev/" + this->port;
+	this->port = "/dev/" + port;
+	cout << "init at " << this->port << endl;
 }
 
 TCA9535::~TCA9535()
@@ -17,32 +18,6 @@ TCA9535::~TCA9535()
 	//close i2c device
 	closeDev();
 }
-
-bool TCA9535::writeRegister(uint8_t command, uint8_t data)
-{
-	if (write(fd,&data,1) != 1)
-	{
-		/* ERROR HANDLING: i2c transaction failed */
-		cout << "Failed to write to the i2c bus" << endl;
-		//buffer = g_strerror(errno);
-		cout << endl << endl;
-	}
-}
-
-uint8_t TCA9535::readRegister(uint8_t command)
-{
-	uint8_t data;
-	if (read(fd,&data,1) != 1)
-	{
-		/* ERROR HANDLING: i2c transaction failed */
-		cout << "Failed to read from the i2c bus." << endl;
-		//buffer = g_strerror(errno);
-		cout << endl << endl;
-	}
-
-	return data;
-}
-
 
 bool TCA9535::openDev()
 {
@@ -65,6 +40,47 @@ bool TCA9535::closeDev()
 		cout << "can't close i2c port" << endl;
 }
 
+bool TCA9535::writeRegister(uint8_t command, uint8_t data)
+{
+	uint8_t buff[2];
+	buff[0] = command;
+	buff[1] = data;
+
+	if (write(fd,buff,2) != 2)
+	{
+		/* ERROR HANDLING: i2c transaction failed */
+		cout << "Failed to write to the i2c bus" << endl;
+		cout << "errno " << errno << " : " << strerror(errno) << endl;
+		cout << endl ;
+		exit(1);
+	}
+
+}
+
+uint8_t TCA9535::readRegister(uint8_t command)
+{
+	uint8_t data;
+
+	if (write(fd,&command,1) != 1)
+	{
+		/* ERROR HANDLING: i2c transaction failed */
+		cout << "Failed to read to the i2c bus" << endl;
+		cout << "errno " << errno << " : " << strerror(errno) << endl;
+		cout << endl;
+		exit(1);
+	}
+
+	if (read(fd,&data,1) != 1)
+	{
+		/* ERROR HANDLING: i2c transaction failed */
+		cout << "Failed to read from the i2c bus." << endl;
+		cout << "errno [" << errno << "] : " << strerror(errno) << endl;
+		cout << endl ;
+		exit(1);
+	}
+
+	return data;
+}
 
 bool TCA9535::configuratePort(Port port, Function function)
 {
@@ -136,7 +152,7 @@ bool TCA9535::writePort(Port port, uint8_t data)
 	return true;
 }
 
-bool TCA9535::writeBit(Port port,uint8_t bit, uint8_t value)
+bool TCA9535::writeBit(Port port,uint8_t bit, bool value)
 {
 	uint8_t addr, data;
 	if (port == port0)
@@ -154,6 +170,8 @@ bool TCA9535::writeBit(Port port,uint8_t bit, uint8_t value)
 	if (value)
 		data |= 1 << bit;
 	else data &= ~(1 << bit);
+	writeRegister(addr, data);
+
 	 return true;
 }
 
@@ -180,7 +198,7 @@ bool TCA9535::readBit(Port port, uint8_t bit)
 }
 
 
-uint8_t TCA9535::invertPort(Port port)
+uint8_t TCA9535::invertPort(Port port, uint8_t data)
 {
 	uint8_t addr;
 	if (port == port0)
@@ -192,11 +210,14 @@ uint8_t TCA9535::invertPort(Port port)
 		cout << "port input error." << endl;
 		return false;
 	}
+
+	writeRegister(addr, data);
+	return true;
 }
 
-bool TCA9535::invertBit(Port port, uint8_t bit)
+bool TCA9535::invertBit(Port port, uint8_t bit, bool value)
 {
-	uint8_t addr;
+	uint8_t addr, data;
 	if (port == port0)
 		addr = INVPORT0;
 	else if (port == port1)
@@ -206,4 +227,13 @@ bool TCA9535::invertBit(Port port, uint8_t bit)
 		cout << "port input error." << endl;
 		return false;
 	}
+
+	data = readRegister(addr);
+
+	if (value)
+		data |= 1 << bit;
+	else data &= ~(1 << bit);
+
+	writeRegister(addr, data);
+	return true;
 }
