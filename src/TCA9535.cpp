@@ -134,6 +134,34 @@ bool TCA9535::configurateBit(Port port, uint8_t bit, Function function)
 	return true;
 }
 
+bool TCA9535::configurateMask(Port port, uint8_t mask, Function function)
+{
+	uint8_t addr, data;
+	if (port == port0)
+		addr = CONFIGUREPORT0;
+	else if (port == port1)
+		addr = CONFIGUREPORT1;
+	else
+	{
+		cout << "port input error." << endl;
+		return false;
+	}
+
+	data = readRegister(addr);
+	// using ceec set bit
+	if (function == input)
+		{
+			data |= mask;
+		}
+		else if (function == output)
+		{
+			data &= ~(mask);
+		}
+
+	writeRegister(addr, data);
+	return true;
+}
+
 
 bool TCA9535::writePort(Port port, uint8_t data)
 {
@@ -168,7 +196,7 @@ bool TCA9535::writeBit(Port port,uint8_t bit, bool value)
 	data = readRegister(addr);
 
 	if (value)
-		data |= 1 << bit;
+		data |= (1 << bit);
 	else data &= ~(1 << bit);
 	writeRegister(addr, data);
 
@@ -176,13 +204,21 @@ bool TCA9535::writeBit(Port port,uint8_t bit, bool value)
 }
 
 
-uint8_t TCA9535::readPort(Port port)
+uint8_t TCA9535::readPort(Port port, Function function)
 {
 	uint8_t addr;
 	if (port == port0)
-		addr = INPUTPORT0;
+		if (function == input)
+			addr = INPUTPORT0;
+		else if (function == output)
+			addr = OUTPORT0;
+		else cout << "choose wrong function of port" << endl;
 	else if (port == port1)
-		addr = INPUTPORT1;
+		if (function == input)
+			addr = INPUTPORT1;
+		else if (function == output)
+			addr = OUTPORT1;
+		else cout << "choose wrong function of port" << endl;
 	else
 	{
 		cout << "port input error." << endl;
@@ -192,9 +228,9 @@ uint8_t TCA9535::readPort(Port port)
 	return readRegister(addr);
 }
 
-bool TCA9535::readBit(Port port, uint8_t bit)
+bool TCA9535::readBit(Port port, Function function, uint8_t bit)
 {
-	return (readPort(port) & (1 << bit));
+	return (readPort(port, function) & (1 << bit));
 }
 
 

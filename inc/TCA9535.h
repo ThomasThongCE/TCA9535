@@ -55,10 +55,11 @@ public:
 	bool closeDev();	// close i2c port
 
 	bool configuratePort(Port port, Function function);
-	bool configurateBit(Port port, uint8_t byte, Function function);
+	bool configurateBit(Port port, uint8_t bit, Function function);
+	bool configurateMask(Port port, uint8_t mask, Function function);
 
-	uint8_t readPort(Port port);								// return port value
-	bool readBit(Port port, uint8_t bit);					// return value of that bit
+	uint8_t readPort(Port port, Function function);								// return port value
+	bool readBit(Port port, Function function, uint8_t bit);					// return value of that bit
 
 	bool writePort(Port port, uint8_t data);					// return whether if success or not
 	bool writeBit(Port port, uint8_t bit, bool value);	// return whether if success or not
